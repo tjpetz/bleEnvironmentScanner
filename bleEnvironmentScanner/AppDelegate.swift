@@ -13,10 +13,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        
+        let bleManager = BLEManager()
+        
+        // Create the SwiftUI view that provides the window contents and add our environment object
+        let contentView = PeripheralListView().environmentObject(bleManager)
 
         // Create the window and set the content view.
         window = NSWindow(
