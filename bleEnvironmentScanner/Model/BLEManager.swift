@@ -12,6 +12,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
 
     var centralManager: CBCentralManager!
     @Published var peripherals: [Peripheral] = []
+    @Published var isScanning: Bool = false
     
     func findPeripheral(peripheral: CBPeripheral) -> Peripheral? {
         for p in peripherals {
@@ -48,6 +49,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         print("Found \(peripheral.identifier.uuidString) with rssi = \(RSSI.intValue)")
         if let p = findPeripheral(peripheral: peripheral) {
             p.rssi = RSSI.intValue
+            print("Updating RSSI")
         } else {
             peripherals.append(Peripheral(peripheral, scanRSSI: RSSI.intValue))
             centralManager.connect(peripheral)
@@ -64,11 +66,17 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     }
     
     func scan() {
-        centralManager?.scanForPeripherals(
+        isScanning = true
+        centralManager.scanForPeripherals(
             withServices: [EnvironmentService.environmentServiceCBUUID],
             options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
     }
 
+    func stopScanning() {
+        isScanning = false
+        centralManager.stopScan()
+    }
+    
     override init() {
         super.init()
         

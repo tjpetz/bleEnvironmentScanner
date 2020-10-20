@@ -20,6 +20,7 @@
 		0FF3563425391950000F5B81 /* EnvironmentServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */; };
 		0FF356392539EC27000F5B81 /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF356382539EC27000F5B81 /* ServicesListView.swift */; };
 		0FF3563D2539F304000F5B81 /* GenericServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF3563C2539F304000F5B81 /* GenericServiceView.swift */; };
+		0FF356BC253F667B000F5B81 /* SignalStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF356BB253F667B000F5B81 /* SignalStrengthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentServiceView.swift; sourceTree = "<group>"; };
 		0FF356382539EC27000F5B81 /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
 		0FF3563C2539F304000F5B81 /* GenericServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericServiceView.swift; sourceTree = "<group>"; };
+		0FF356BB253F667B000F5B81 /* SignalStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStrengthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				0FF356382539EC27000F5B81 /* ServicesListView.swift */,
 				0FF3563C2539F304000F5B81 /* GenericServiceView.swift */,
 				0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */,
+				0FF356BB253F667B000F5B81 /* SignalStrengthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				0FF3560F2538CD61000F5B81 /* PeripheralListView.swift in Sources */,
 				0FF356242538CDC4000F5B81 /* BLEManager.swift in Sources */,
 				0FF356392539EC27000F5B81 /* ServicesListView.swift in Sources */,
+				0FF356BC253F667B000F5B81 /* SignalStrengthView.swift in Sources */,
 				0FF3560D2538CD61000F5B81 /* AppDelegate.swift in Sources */,
 				0FF356302538FD39000F5B81 /* DataExtensions.swift in Sources */,
 				0FF356212538CD7C000F5B81 /* EnvironmentService.swift in Sources */,

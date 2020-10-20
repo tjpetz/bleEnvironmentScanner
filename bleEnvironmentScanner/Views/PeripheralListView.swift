@@ -3,7 +3,6 @@
 //  bleEnvironmentScanner//
 
 import SwiftUI
-import Combine
 
 struct PeripheralListView: View {
     
@@ -11,6 +10,10 @@ struct PeripheralListView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Button("Scan", action:{bleManager.scan()}).disabled(bleManager.isScanning)
+                Button("Stop Scanning", action: {bleManager.stopScanning()}).disabled(!bleManager.isScanning)
+            }
             Text("Found \(bleManager.peripherals.count) peripherals")
             NavigationView {
                 List {
@@ -18,9 +21,12 @@ struct PeripheralListView: View {
                         peripheral in
                         NavigationLink(destination: ServicesListView(peripheral: peripheral)) {
                             HStack {
-                                Text(peripheral.uuid.uuidString)
+                                VStack (alignment: .leading) {
+                                    Text(peripheral.uuid.uuidString)
+                                    Text(peripheral.localName ?? "").font(.footnote)
+                                }
                                 Spacer()
-                                Text("\(peripheral.rssi)")
+                                SignalStrengthView(signalStrength: peripheral.rssi)
                             }
                         }
                     }
