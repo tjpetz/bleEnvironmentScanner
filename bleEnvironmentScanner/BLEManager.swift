@@ -38,7 +38,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
             print("Central started")
             scan()
         case .poweredOff:
-            centralManager!.stopScan()
+            stopScanning()
         default:
             print("Central not in expected state")
         }

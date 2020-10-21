@@ -13,9 +13,20 @@ struct ContentView: View {
     @State var selectedPeripheral: Peripheral?
     
     var body: some View {
-        NavigationView {
-            PeripheralsList(selectedPeripheral: $selectedPeripheral)
-            DetailsView(peripheral: $selectedPeripheral)
+        VStack {
+            // Layout in an HStack with a spacer so the view fills the width
+            HStack {
+                NavigationView {
+                    PeripheralsList(selectedPeripheral: $selectedPeripheral)
+                    DetailsView(peripheral: $selectedPeripheral)
+                }
+                Spacer()
+            }
+            HStack {
+                Button("Start Scanning", action: {bleManager.scan()}).disabled(bleManager.isScanning)
+                Button("Stop Scanning", action: {bleManager.stopScanning()}).disabled(!bleManager.isScanning)
+            }
+            .padding(10)
         }
     }
 }
@@ -31,7 +42,7 @@ struct PeripheralsList: View {
             PeripheralCell(peripheral: peripheral)
         }
         .listStyle(SidebarListStyle())
-        .frame(minHeight: 200)
+        .frame(minWidth: 400, minHeight: 200, maxHeight: .infinity)
     }
 }
 
