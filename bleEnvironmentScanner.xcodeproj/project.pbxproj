@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F21724225408AFF0033E537 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F21724125408AFF0033E537 /* ContentView.swift */; };
+		0F2172832540C6CE0033E537 /* PeripheralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172822540C6CE0033E537 /* PeripheralCell.swift */; };
 		0FF3560D2538CD61000F5B81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF3560C2538CD61000F5B81 /* AppDelegate.swift */; };
 		0FF3560F2538CD61000F5B81 /* PeripheralListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF3560E2538CD61000F5B81 /* PeripheralListView.swift */; };
 		0FF356112538CD63000F5B81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FF356102538CD63000F5B81 /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F21724125408AFF0033E537 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0F2172822540C6CE0033E537 /* PeripheralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralCell.swift; sourceTree = "<group>"; };
 		0FF356092538CD61000F5B81 /* bleEnvironmentScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bleEnvironmentScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF3560C2538CD61000F5B81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF3560E2538CD61000F5B81 /* PeripheralListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralListView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				0FF356182538CD63000F5B81 /* Info.plist */,
 				0FF356192538CD63000F5B81 /* bleEnvironmentScanner.entitlements */,
 				0FF356122538CD63000F5B81 /* Preview Content */,
+				0F21724125408AFF0033E537 /* ContentView.swift */,
+				0F2172822540C6CE0033E537 /* PeripheralCell.swift */,
 			);
 			path = bleEnvironmentScanner;
 			sourceTree = "<group>";
@@ -189,6 +195,7 @@
 			files = (
 				0FF3563425391950000F5B81 /* EnvironmentServiceView.swift in Sources */,
 				0FF356272538D26C000F5B81 /* Peripheral.swift in Sources */,
+				0F21724225408AFF0033E537 /* ContentView.swift in Sources */,
 				0FF3563D2539F304000F5B81 /* GenericServiceView.swift in Sources */,
 				0FF3560F2538CD61000F5B81 /* PeripheralListView.swift in Sources */,
 				0FF356242538CDC4000F5B81 /* BLEManager.swift in Sources */,
@@ -198,6 +205,7 @@
 				0FF356302538FD39000F5B81 /* DataExtensions.swift in Sources */,
 				0FF356212538CD7C000F5B81 /* EnvironmentService.swift in Sources */,
 				0FF3562B2538E37B000F5B81 /* GenericService.swift in Sources */,
+				0F2172832540C6CE0033E537 /* PeripheralCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
