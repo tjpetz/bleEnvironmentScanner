@@ -11,16 +11,16 @@ struct SignalStrengthView: View {
     
     var signalStrength: Int
     
+    // Draw a height scaled rectangle, stroke if less then the limit and filled otherwise.
     private func SignalRectangle(heightScale: CGFloat, onLimit: Int) -> some View {
         if signalStrength >= onLimit {
             return AnyView(Rectangle()
-                .scale(x:1, y: heightScale, anchor: .bottom)
-                .fill(Color.blue))
+                .scale(x:1, y:heightScale, anchor: .bottom)
+                .fill(Color.green))
         } else {
             return AnyView(Rectangle()
-                .scale(x:1, y: heightScale, anchor: .bottom)
-                .stroke()
-                .fill(Color.blue))
+                .scale(x:1, y:heightScale, anchor: .bottom)
+                .stroke(Color.green))
         }
     }
     
@@ -33,7 +33,7 @@ struct SignalStrengthView: View {
                 SignalRectangle(heightScale: 0.80, onLimit: -50)
                 SignalRectangle(heightScale: 1.0, onLimit: -40)
             }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
-            Text("\(signalStrength) dBm").font(.system(size: 8, weight: .light))
+            Text("\(signalStrength) dBm").font(.system(size: 9, weight: .light))
         }.frame(width: 50, height: 40)
     }
 }
@@ -41,7 +41,7 @@ struct SignalStrengthView: View {
 struct SignalStrengthView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SignalStrengthView(signalStrength: -90)
+            SignalStrengthView(signalStrength: -100)
             SignalStrengthView(signalStrength: -80)
             SignalStrengthView(signalStrength: -70)
             SignalStrengthView(signalStrength: -55)

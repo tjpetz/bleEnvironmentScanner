@@ -33,7 +33,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        
         switch central.state {
         case .poweredOn:
             print("Central started")
@@ -57,7 +56,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected to \(peripheral.identifier.uuidString)")
+        print("Connected to \(peripheral.identifier.uuidString) with local name \(peripheral.name ?? "Unknown")")
         if let p = findPeripheral(peripheral: peripheral) {
             p.uuid = CBUUID(nsuuid: peripheral.identifier)
             p.localName = peripheral.name

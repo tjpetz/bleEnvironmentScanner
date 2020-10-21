@@ -74,8 +74,18 @@
 			isa = PBXGroup;
 			children = (
 				0FF3560C2538CD61000F5B81 /* AppDelegate.swift */,
-				0FF356412539F3BE000F5B81 /* Views */,
+				0FF356232538CDC4000F5B81 /* BLEManager.swift */,
+				0FF356262538D26C000F5B81 /* Peripheral.swift */,
+				0FF356202538CD7C000F5B81 /* EnvironmentService.swift */,
+				0FF3562A2538E37B000F5B81 /* GenericService.swift */,
+				0FF3562F2538FD39000F5B81 /* DataExtensions.swift */,
+				0FF3560E2538CD61000F5B81 /* PeripheralListView.swift */,
+				0FF356382539EC27000F5B81 /* ServicesListView.swift */,
+				0FF3563C2539F304000F5B81 /* GenericServiceView.swift */,
+				0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */,
+				0FF356BB253F667B000F5B81 /* SignalStrengthView.swift */,
 				0FF356402539F3B7000F5B81 /* Model */,
+				0FF356412539F3BE000F5B81 /* Views */,
 				0FF356102538CD63000F5B81 /* Assets.xcassets */,
 				0FF356152538CD63000F5B81 /* Main.storyboard */,
 				0FF356182538CD63000F5B81 /* Info.plist */,
@@ -96,11 +106,6 @@
 		0FF356402539F3B7000F5B81 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0FF356232538CDC4000F5B81 /* BLEManager.swift */,
-				0FF356262538D26C000F5B81 /* Peripheral.swift */,
-				0FF356202538CD7C000F5B81 /* EnvironmentService.swift */,
-				0FF3562A2538E37B000F5B81 /* GenericService.swift */,
-				0FF3562F2538FD39000F5B81 /* DataExtensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,11 +113,6 @@
 		0FF356412539F3BE000F5B81 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0FF3560E2538CD61000F5B81 /* PeripheralListView.swift */,
-				0FF356382539EC27000F5B81 /* ServicesListView.swift */,
-				0FF3563C2539F304000F5B81 /* GenericServiceView.swift */,
-				0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */,
-				0FF356BB253F667B000F5B81 /* SignalStrengthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
