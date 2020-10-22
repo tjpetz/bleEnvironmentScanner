@@ -78,7 +78,9 @@ class EnvironmentService: NSObject, ObservableObject, Identifiable, CBPeripheral
         peripheral.rawPeripheral.readValue(for: temperatureCharacteristic!)
         peripheral.rawPeripheral.readValue(for: humidityCharacteristic!)
         peripheral.rawPeripheral.readValue(for: pressureCharacteristic!)
-//        peripheral.rawPeripheral.readValue(for: locationCharacteristic!)
+        if locationCharacteristic != nil {
+            peripheral.rawPeripheral.readValue(for: locationCharacteristic!)
+        }
     }
     
     init (peripheral: Peripheral, service: CBService) {

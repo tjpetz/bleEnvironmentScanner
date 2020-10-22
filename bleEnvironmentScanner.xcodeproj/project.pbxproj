@@ -62,8 +62,8 @@
 		0F2172AB2540FAA70033E537 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0FF356262538D26C000F5B81 /* Peripheral.swift */,
 				0FF356232538CDC4000F5B81 /* BLEManager.swift */,
+				0FF356262538D26C000F5B81 /* Peripheral.swift */,
 				0FF356202538CD7C000F5B81 /* EnvironmentService.swift */,
 				0FF3562A2538E37B000F5B81 /* GenericService.swift */,
 				0FF3562F2538FD39000F5B81 /* DataExtensions.swift */,
