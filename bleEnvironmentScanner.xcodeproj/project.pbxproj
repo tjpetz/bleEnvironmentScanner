@@ -28,6 +28,7 @@
 /* Begin PBXFileReference section */
 		0F21724125408AFF0033E537 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0F2172822540C6CE0033E537 /* PeripheralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralCell.swift; sourceTree = "<group>"; };
+		0F2172AF254111920033E537 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0FF356092538CD61000F5B81 /* bleEnvironmentScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bleEnvironmentScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF3560C2538CD61000F5B81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF3560E2538CD61000F5B81 /* PeripheralListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralListView.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		0FF356002538CD61000F5B81 = {
 			isa = PBXGroup;
 			children = (
+				0F2172AF254111920033E537 /* README.md */,
 				0FF3560B2538CD61000F5B81 /* bleEnvironmentScanner */,
 				0FF3560A2538CD61000F5B81 /* Products */,
 			);

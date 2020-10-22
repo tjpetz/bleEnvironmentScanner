@@ -11,16 +11,27 @@ struct SignalStrengthView: View {
     
     var signalStrength: Int
     
+    private func signalStrengthColor(_ signalStrength: Int) -> Color {
+        if signalStrength <= -80 {
+            return Color.red
+        } else if signalStrength <= -50 {
+            return Color.yellow
+        } else {
+            return Color.green
+        }
+    }
+    
     // Draw a height scaled rectangle, stroke if less then the limit and filled otherwise.
     private func SignalRectangle(heightScale: CGFloat, onLimit: Int) -> some View {
+        let signalColor = signalStrengthColor(signalStrength)
         if signalStrength >= onLimit {
             return AnyView(Rectangle()
                 .scale(x:1, y:heightScale, anchor: .bottom)
-                .fill(Color.green))
+                .fill(signalColor))
         } else {
             return AnyView(Rectangle()
                 .scale(x:1, y:heightScale, anchor: .bottom)
-                .stroke(Color.green))
+                .stroke(signalColor))
         }
     }
     
