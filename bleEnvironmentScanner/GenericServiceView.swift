@@ -9,18 +9,25 @@ import SwiftUI
 import CoreBluetooth
 
 struct GenericServiceView: View {
-    var service: GenericService?
+    
+    @ObservedObject var service: GenericService
     
     var body: some View {
-        VStack {
-            Text("Hello, World!")
+        VStack (alignment: .leading, spacing: 4) {
+            Text(service.uuid?.uuidString ?? "Unknown").font(.headline)
             Spacer()
-        }
+            List(service.characteristics) {
+                characteristic in
+                Text(characteristic.uuid.uuidString)
+            }
+            Spacer()
+            Button("Refresh", action: {})
+        }.padding(4)
     }
 }
 
-struct GenericServiceView_Previews: PreviewProvider {
-    static var previews: some View {
-        GenericServiceView(service: nil)
-    }
-}
+//struct GenericServiceView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GenericServiceView(service: nil)
+//    }
+//}

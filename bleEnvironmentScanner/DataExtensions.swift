@@ -10,6 +10,11 @@
 import Foundation
 
 extension Data {
+    
+    func getUInt8 () -> UInt8 {
+        return [UInt8](self)[0]
+    }
+    
     func getInt16 () -> Int16 {
         let val = [UInt8](self)
         return Int16(val[1]) << 8 + Int16(val[0])

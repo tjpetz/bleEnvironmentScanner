@@ -8,7 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-class EnvironmentService: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate {
+class EnvironmentService: Service, CBPeripheralDelegate {
     
     static let environmentServiceCBUUID = CBUUID(string: "181A")
     static let temperatureCharacteristicCBUUID = CBUUID(string: "2A6E")
@@ -75,11 +75,17 @@ class EnvironmentService: NSObject, ObservableObject, Identifiable, CBPeripheral
     
     func refreshReadings() {
         print("Refreshing characteristics values")
-        peripheral.rawPeripheral.readValue(for: temperatureCharacteristic!)
-        peripheral.rawPeripheral.readValue(for: humidityCharacteristic!)
-        peripheral.rawPeripheral.readValue(for: pressureCharacteristic!)
-        if locationCharacteristic != nil {
-            peripheral.rawPeripheral.readValue(for: locationCharacteristic!)
+        if let c = temperatureCharacteristic {
+            peripheral.rawPeripheral.readValue(for: c)
+        }
+        if let c = humidityCharacteristic {
+            peripheral.rawPeripheral.readValue(for: c)
+        }
+        if let c = pressureCharacteristic {
+            peripheral.rawPeripheral.readValue(for: c)
+        }
+        if let c = locationCharacteristic {
+            peripheral.rawPeripheral.readValue(for: c)
         }
     }
     

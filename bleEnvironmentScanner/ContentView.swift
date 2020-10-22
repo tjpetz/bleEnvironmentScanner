@@ -51,10 +51,19 @@ struct DetailsView: View {
     @Binding var peripheral: Peripheral?
     
     var body: some View {
-        if let p = peripheral?.environmentService {
-            return AnyView(EnvironmentServiceView(environmentService: p))
-        } else {
-            return AnyView(Text("Select an item for details"))
+        List {
+            if let s = peripheral?.environmentService {
+                EnvironmentServiceView(environmentService: s)
+            }
+            if let s = peripheral?.batteryService {
+                BatteryServiceView(batteryService: s)
+            }
+            if let s = peripheral?.otherServices {
+                ForEach(s) {
+                    service in
+                    GenericServiceView(service: service)
+                }
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  GenericService.swift
+//  BatteryService.swift
 //  bleEnvironmentScanner
 //
 //  Created by Thomas Petz, Jr. on 10/15/20.
@@ -8,13 +8,16 @@
 import Foundation
 import CoreBluetooth
 
-class GenericService: Service, CBPeripheralDelegate {
-
-    var peripheral: Peripheral
+class BatteryService: Service, CBPeripheralDelegate {
+    
+    static let batteryServiceCBUUID = CBUUID(string: "180F")
+    static let batteryLevelCharacteristicCBUUID = CBUUID(string: "2A19")
+    
+    @Published var peripheral: Peripheral
     var rawService: CBService?
-
-    @Published var characteristics: [Characteristic] = []
-    @Published var uuid: CBUUID?
+    var batteryLevelCharacteristic: CBCharacteristic? = nil
+    
+    @Published var batteryLevelPercent: UInt8 = 0
     
     func discoverCharacteristics() {
         peripheral.rawPeripheral.delegate = self
@@ -25,28 +28,36 @@ class GenericService: Service, CBPeripheralDelegate {
         print("Found \(service.characteristics!.count) characteristic(s) for \(service.uuid.uuidString)")
         for c in service.characteristics! {
             print("Characteristic \(c.uuid)")
-            characteristics.append(Characteristic(service: self, characteristic: c))
+            switch c.uuid {
+            case BatteryService.batteryLevelCharacteristicCBUUID:
+                batteryLevelCharacteristic = c
+            default:
+                print("Unknown characteristic")
+            }
         }
         refreshReadings()
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         print("Received update for \(characteristic.uuid.uuidString)")
+        switch characteristic.uuid {
+        case BatteryService.batteryLevelCharacteristicCBUUID:
+            batteryLevelPercent = characteristic.value!.getUInt8()
+            print("Battery Level = \(batteryLevelPercent)")
+        default:
+            print("Unknown characteristic")
+        }
     }
     
     func refreshReadings() {
         print("Refreshing characteristics values")
-//        for c in characteristics {
-//            if c.properties.contains(.read) {
-//                peripheral.rawPeripheral.readValue(for: c)
-//            }
-//        }
+        if let c = batteryLevelCharacteristic {
+            peripheral.rawPeripheral.readValue(for: c)
+    }
     }
     
     init (peripheral: Peripheral, service: CBService) {
         self.peripheral = peripheral
         rawService = service
-        self.uuid = service.uuid
     }
 }
-

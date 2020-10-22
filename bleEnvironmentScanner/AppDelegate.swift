@@ -18,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let bleManager = BLEManager()
         
         // Create the SwiftUI view that provides the window contents and add our environment object
-//        let contentView = PeripheralListView().environmentObject(bleManager)
         let contentView = ContentView().environmentObject(bleManager)
 
         // Create the window and set the content view.

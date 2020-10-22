@@ -69,6 +69,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         centralManager.scanForPeripherals(
             withServices: [EnvironmentService.environmentServiceCBUUID],
             options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
+        // stop scanning after 30 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+            self.stopScanning()
+        }
     }
 
     func stopScanning() {
