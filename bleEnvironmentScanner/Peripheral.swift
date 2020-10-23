@@ -52,6 +52,9 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
             for c in service.characteristics! {
                 print("Characteristic \(c.uuid)")
                 s.characteristics.append(Characteristic(service: s, characteristic: c))
+                if c.properties.contains(.read) {
+                    peripheral.readValue(for: c)
+                }
             }
         } else {
             print("Unknown service !!!!!")
@@ -59,7 +62,16 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("Received update for \(characteristic.uuid.uuidString)")
+        print("Received update for \(characteristic.uuid.uuidString) of \(peripheral.identifier.uuidString) of \(String(describing: characteristic.value))")
+        
+        for s in services {
+            for c in s.characteristics {
+                if c.characteristic == characteristic {
+                    c.value = characteristic.value
+                    return
+                }
+            }
+        }
     }
 
     // MARK: Constructors

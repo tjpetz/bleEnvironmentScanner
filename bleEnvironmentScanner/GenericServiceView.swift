@@ -10,19 +10,25 @@ import CoreBluetooth
 
 struct GenericServiceView: View {
     
-    @ObservedObject var service: Service
+    @State var service: Service?
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
-            Text(service.uuid.uuidString).font(.headline)
+            Text(service!.uuid.uuidString).font(.headline)
             Spacer()
-            List(service.characteristics) {
+            ForEach (service!.characteristics, id: \.self) {
                 characteristic in
-                Text(characteristic.uuid.uuidString)
+                HStack {
+                    Text("\(characteristic.uuid.uuidString): ")
+                    Text(characteristic.characteristic.value?.hexEncodedString() ?? "")
+                    if (characteristic.characteristic.properties.contains(CBCharacteristicProperties.read)) {
+                        Spacer()
+                        Button("Refresh", action: {})
+                    }
+                }.font(.caption)
             }
             Spacer()
-            Button("Refresh", action: {})
-        }.padding(4)
+         }.padding(4)
     }
 }
 

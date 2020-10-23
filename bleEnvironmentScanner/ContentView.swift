@@ -55,10 +55,21 @@ struct DetailsView: View {
             if let services = peripheral?.services {
                 ForEach (services) {
                     service in
-                    GenericServiceView(service: service)
+                    getServiceView(service: service)
                 }
             }
         }
+    }
+}
+
+func getServiceView(service: Service) -> some View {
+    switch service.uuid {
+    case EnvironmentServiceView.serviceUUID:
+        return AnyView(EnvironmentServiceView(service: service))
+    case BatteryServiceView.serviceUUID:
+        return AnyView(BatteryServiceView(service: service))
+    default:
+        return AnyView(GenericServiceView(service: service))
     }
 }
 

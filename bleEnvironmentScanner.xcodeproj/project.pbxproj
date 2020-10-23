@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F010F702543615A0098D436 /* EnvironmentServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */; };
+		0F010F7225437B8C0098D436 /* BatteryServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172B62541F6400033E537 /* BatteryServiceView.swift */; };
 		0F21724225408AFF0033E537 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F21724125408AFF0033E537 /* ContentView.swift */; };
 		0F2172832540C6CE0033E537 /* PeripheralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172822540C6CE0033E537 /* PeripheralCell.swift */; };
 		0F2172BB254206720033E537 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172BA254206720033E537 /* Characteristic.swift */; };
@@ -194,11 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F010F702543615A0098D436 /* EnvironmentServiceView.swift in Sources */,
 				0FF356272538D26C000F5B81 /* Peripheral.swift in Sources */,
 				0F2172BE254232150033E537 /* Service.swift in Sources */,
 				0F21724225408AFF0033E537 /* ContentView.swift in Sources */,
 				0FF3563D2539F304000F5B81 /* GenericServiceView.swift in Sources */,
 				0FF356242538CDC4000F5B81 /* BLEManager.swift in Sources */,
+				0F010F7225437B8C0098D436 /* BatteryServiceView.swift in Sources */,
 				0FF356BC253F667B000F5B81 /* SignalStrengthView.swift in Sources */,
 				0FF3560D2538CD61000F5B81 /* AppDelegate.swift in Sources */,
 				0FF356302538FD39000F5B81 /* DataExtensions.swift in Sources */,

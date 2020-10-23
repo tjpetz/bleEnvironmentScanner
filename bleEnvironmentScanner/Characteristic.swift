@@ -13,7 +13,8 @@ class Characteristic: NSObject, ObservableObject, Identifiable {
     
     @Published var uuid: CBUUID
     var service: Service
-    var characteristic: CBCharacteristic
+    @Published var characteristic: CBCharacteristic
+    @Published var value: Data? = nil
     
     init (service: Service, characteristic: CBCharacteristic) {
         self.service = service
