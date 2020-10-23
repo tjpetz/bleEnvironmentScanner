@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct BatteryServiceView: View {
-    @ObservedObject var batteryService: BatteryService
+    
+    static let serviceUUID = CBUUID(string: "180F")
+    
+    @ObservedObject var batteryService: Service
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
             Text("Battery Service").font(.headline)
             Spacer()
-            Text(String(format: "Remaining Power: %d %%", batteryService.batteryLevelPercent))
-            Spacer()
-            Button("Refresh", action: { batteryService.refreshReadings() })
         }
         .padding(4)
         

@@ -8,7 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-class BatteryService: Service, CBPeripheralDelegate {
+class BatteryService: NSObject, ObservableObject, CBPeripheralDelegate {
     
     static let batteryServiceCBUUID = CBUUID(string: "180F")
     static let batteryLevelCharacteristicCBUUID = CBUUID(string: "2A19")

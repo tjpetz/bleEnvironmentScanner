@@ -11,15 +11,12 @@ import CoreBluetooth
 class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate {
     
     let rawPeripheral: CBPeripheral
-    @Published var services: [Service] = []
-//    @Published var environmentService: EnvironmentService?
-//    @Published var batteryService: BatteryService?
-//    @Published var otherServices: [GenericService] = []
-    
     @Published var uuid: CBUUID
     @Published var localName: String?
     @Published var rssi: Int
 
+    @Published var services: [Service] = []
+    
     // MARK: - Service Discovery
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         print("Discovered \(peripheral.services!.count) service(s) for \(peripheral.identifier.uuidString)")
@@ -56,7 +53,6 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
                 print("Characteristic \(c.uuid)")
                 s.characteristics.append(Characteristic(service: s, characteristic: c))
             }
-//            refreshReadings()
         } else {
             print("Unknown service !!!!!")
         }

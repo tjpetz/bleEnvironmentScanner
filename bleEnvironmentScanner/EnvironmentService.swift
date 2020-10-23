@@ -8,7 +8,7 @@
 import Foundation
 import CoreBluetooth
 
-class EnvironmentService: Service, CBPeripheralDelegate {
+class EnvironmentService: NSObject, ObservableObject, CBPeripheralDelegate {
     
     static let environmentServiceCBUUID = CBUUID(string: "181A")
     static let temperatureCharacteristicCBUUID = CBUUID(string: "2A6E")

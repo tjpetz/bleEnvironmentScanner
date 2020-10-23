@@ -10,11 +10,12 @@ import CoreBluetooth
 
 class Service: NSObject, ObservableObject, Identifiable {
     
-    var characteristics: [Characteristic] = []
+    @Published var uuid: CBUUID
     var rawService: CBService
-    var uuid: CBUUID
     var peripheral: Peripheral
-    
+
+    @Published var characteristics: [Characteristic] = []
+
     init(peripheral: Peripheral, service: CBService) {
         self.peripheral = peripheral
         rawService = service

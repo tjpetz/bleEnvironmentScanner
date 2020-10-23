@@ -10,11 +10,11 @@ import CoreBluetooth
 
 struct GenericServiceView: View {
     
-    @ObservedObject var service: GenericService
+    @ObservedObject var service: Service
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
-            Text(service.uuid?.uuidString ?? "Unknown").font(.headline)
+            Text(service.uuid.uuidString).font(.headline)
             Spacer()
             List(service.characteristics) {
                 characteristic in

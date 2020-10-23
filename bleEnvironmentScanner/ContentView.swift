@@ -27,7 +27,7 @@ struct ContentView: View {
                 Button("Stop Scanning", action: {bleManager.stopScanning()}).disabled(!bleManager.isScanning)
             }
             .padding(10)
-        }
+        }.frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
     }
 }
 
@@ -52,14 +52,8 @@ struct DetailsView: View {
     
     var body: some View {
         List {
-            if let s = peripheral?.environmentService {
-                EnvironmentServiceView(environmentService: s)
-            }
-            if let s = peripheral?.batteryService {
-                BatteryServiceView(batteryService: s)
-            }
-            if let s = peripheral?.otherServices {
-                ForEach(s) {
+            if let services = peripheral?.services {
+                ForEach (services) {
                     service in
                     GenericServiceView(service: service)
                 }
