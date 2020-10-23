@@ -10,6 +10,12 @@ import SwiftUI
 struct EnvironmentServiceView: View {
     @ObservedObject var environmentService: EnvironmentService
     
+    static let environmentServiceCBUUID = CBUUID(string: "181A")
+    static let temperatureCharacteristicCBUUID = CBUUID(string: "2A6E")
+    static let humidityCharacteristicCBUUID = CBUUID(string: "2A6F")
+    static let pressureCharacteristicCBUUID = CBUUID(string: "2A6D")
+    static let locationNameCharacteristicCBUUID = CBUUID(string: "2AB5")
+ 
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
             Text("Environment Service").font(.headline)

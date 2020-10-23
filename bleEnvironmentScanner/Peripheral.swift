@@ -11,9 +11,10 @@ import CoreBluetooth
 class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate {
     
     let rawPeripheral: CBPeripheral
-    @Published var environmentService: EnvironmentService?
-    @Published var batteryService: BatteryService?
-    @Published var otherServices: [GenericService] = []
+    @Published var services: [Service] = []
+//    @Published var environmentService: EnvironmentService?
+//    @Published var batteryService: BatteryService?
+//    @Published var otherServices: [GenericService] = []
     
     @Published var uuid: CBUUID
     @Published var localName: String?
@@ -25,14 +26,7 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         
         for service in peripheral.services! {
             print("Found service \(service.uuid)")
-            switch service.uuid {
-            case EnvironmentService.environmentServiceCBUUID:
-                environmentService = EnvironmentService(peripheral: self, service: service)
-            case BatteryService.batteryServiceCBUUID:
-                batteryService = BatteryService(peripheral: self, service: service)
-            default:
-                otherServices.append(GenericService(peripheral: self, service: service))
-            }
+            services.append(Service(peripheral: self, service: service))
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
@@ -45,21 +39,14 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
     }
 
     func findService(service: CBService) -> Service? {
-        switch service.uuid {
-        case EnvironmentService.environmentServiceCBUUID:
-            return environmentService
-        case BatteryService.batteryServiceCBUUID:
-            return batteryService
-        default:
-            for knownService in otherServices {
-                if knownService.uuid == service.uuid {
-                    return knownService
-                }
+        for s in services {
+            if service.uuid == s.uuid {
+                return s
             }
-            return nil
         }
+        return nil
     }
-    
+        
     // MARK: Characteristic discovery and processing
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         print("Found \(service.characteristics!.count) characteristic(s) for \(service.uuid.uuidString)")

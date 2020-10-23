@@ -12,10 +12,10 @@ import Combine
 class Characteristic: NSObject, ObservableObject, Identifiable {
     
     @Published var uuid: CBUUID
-    var service: GenericService
+    var service: Service
     var characteristic: CBCharacteristic
     
-    init (service: GenericService, characteristic: CBCharacteristic) {
+    init (service: Service, characteristic: CBCharacteristic) {
         self.service = service
         self.characteristic = characteristic
         uuid = characteristic.uuid
