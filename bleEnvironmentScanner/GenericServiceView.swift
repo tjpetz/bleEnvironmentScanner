@@ -18,17 +18,28 @@ struct GenericServiceView: View {
             Spacer()
             ForEach (service!.characteristics, id: \.self) {
                 characteristic in
-                HStack {
-                    Text("\(characteristic.uuid.uuidString): ")
-                    Text(characteristic.characteristic.value?.hexEncodedString() ?? "")
-                    if (characteristic.characteristic.properties.contains(CBCharacteristicProperties.read)) {
-                        Spacer()
-                        Button("Refresh", action: {})
-                    }
-                }.font(.caption)
+                CharacteristicCell(characteristic: characteristic)
             }
             Spacer()
          }.padding(4)
+    }
+}
+
+struct CharacteristicCell: View {
+    
+    @ObservedObject var characteristic: Characteristic
+    
+    var body: some View {
+        HStack {
+            Text(characteristic.uuid.uuidString)
+            Text(characteristic.value?.hexEncodedString() ?? "")
+            if (characteristic.characteristic.properties.contains(.read)) {
+                Spacer()
+                Button("Refresh") {
+                    characteristic.characteristic.service.peripheral.readValue(for: characteristic.characteristic)
+                }
+            }
+        }.font(.caption)
     }
 }
 

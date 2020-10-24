@@ -64,8 +64,8 @@ struct DetailsView: View {
 
 func getServiceView(service: Service) -> some View {
     switch service.uuid {
-    case EnvironmentServiceView.serviceUUID:
-        return AnyView(EnvironmentServiceView(service: service))
+//    case EnvironmentServiceView.serviceUUID:
+//        return AnyView(EnvironmentServiceView(service: service))
     case BatteryServiceView.serviceUUID:
         return AnyView(BatteryServiceView(service: service))
     default:
