@@ -14,22 +14,19 @@ struct BatteryServiceView: View {
     static let serviceUUID = CBUUID(string: "180F")
     static let batteryCharacteristicCBUUID = CBUUID(string: "2A19")
     
-    @ObservedObject var service: Service
+    @State var service: Service
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
             Text("Battery Service").font(.headline)
             Spacer()
             if let level = service.getCharacteristic(cbuuid: BatteryServiceView.batteryCharacteristicCBUUID) {
-                HStack{
-                    Text(String(format: "Battery: %d %%", Int((level.value?.getUInt8())!)))
-                    Spacer()
-                    Button("Refresh") { }
-                }.font(.caption)
+                CharacteristicView(characteristic: level) {
+                    String(format: "Battery: %d %%", Int((level.value?.getUInt8())!))
+                }
             }
         }
         .padding(4)
-        
     }
 }
 

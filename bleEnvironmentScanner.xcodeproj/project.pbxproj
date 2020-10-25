@@ -13,6 +13,9 @@
 		0F2172832540C6CE0033E537 /* PeripheralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172822540C6CE0033E537 /* PeripheralCell.swift */; };
 		0F2172BB254206720033E537 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172BA254206720033E537 /* Characteristic.swift */; };
 		0F2172BE254232150033E537 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172BD254232150033E537 /* Service.swift */; };
+		0FB7243E254482C900744EF7 /* CharacteristicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7243D254482C900744EF7 /* CharacteristicView.swift */; };
+		0FB724412544E90400744EF7 /* ThermometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB724402544E90400744EF7 /* ThermometerView.swift */; };
+		0FB724442544ED0E00744EF7 /* BLEConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB724432544ED0E00744EF7 /* BLEConfigurationView.swift */; };
 		0FF3560D2538CD61000F5B81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF3560C2538CD61000F5B81 /* AppDelegate.swift */; };
 		0FF356112538CD63000F5B81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FF356102538CD63000F5B81 /* Assets.xcassets */; };
 		0FF356142538CD63000F5B81 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FF356132538CD63000F5B81 /* Preview Assets.xcassets */; };
@@ -32,6 +35,9 @@
 		0F2172B62541F6400033E537 /* BatteryServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryServiceView.swift; sourceTree = "<group>"; };
 		0F2172BA254206720033E537 /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
 		0F2172BD254232150033E537 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		0FB7243D254482C900744EF7 /* CharacteristicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicView.swift; sourceTree = "<group>"; };
+		0FB724402544E90400744EF7 /* ThermometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerView.swift; sourceTree = "<group>"; };
+		0FB724432544ED0E00744EF7 /* BLEConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEConfigurationView.swift; sourceTree = "<group>"; };
 		0FF356092538CD61000F5B81 /* bleEnvironmentScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bleEnvironmentScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF3560C2538CD61000F5B81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF356102538CD63000F5B81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +88,9 @@
 				0FF3563C2539F304000F5B81 /* GenericServiceView.swift */,
 				0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */,
 				0F2172B62541F6400033E537 /* BatteryServiceView.swift */,
+				0FB7243D254482C900744EF7 /* CharacteristicView.swift */,
+				0FB724402544E90400744EF7 /* ThermometerView.swift */,
+				0FB724432544ED0E00744EF7 /* BLEConfigurationView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -197,15 +206,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F010F702543615A0098D436 /* EnvironmentServiceView.swift in Sources */,
+				0FB724412544E90400744EF7 /* ThermometerView.swift in Sources */,
 				0FF356272538D26C000F5B81 /* Peripheral.swift in Sources */,
 				0F2172BE254232150033E537 /* Service.swift in Sources */,
 				0F21724225408AFF0033E537 /* ContentView.swift in Sources */,
 				0FF3563D2539F304000F5B81 /* GenericServiceView.swift in Sources */,
 				0FF356242538CDC4000F5B81 /* BLEManager.swift in Sources */,
+				0FB7243E254482C900744EF7 /* CharacteristicView.swift in Sources */,
 				0F010F7225437B8C0098D436 /* BatteryServiceView.swift in Sources */,
 				0FF356BC253F667B000F5B81 /* SignalStrengthView.swift in Sources */,
 				0FF3560D2538CD61000F5B81 /* AppDelegate.swift in Sources */,
 				0FF356302538FD39000F5B81 /* DataExtensions.swift in Sources */,
+				0FB724442544ED0E00744EF7 /* BLEConfigurationView.swift in Sources */,
 				0F2172832540C6CE0033E537 /* PeripheralCell.swift in Sources */,
 				0F2172BB254206720033E537 /* Characteristic.swift in Sources */,
 			);

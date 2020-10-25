@@ -30,16 +30,9 @@ struct CharacteristicCell: View {
     @ObservedObject var characteristic: Characteristic
     
     var body: some View {
-        HStack {
-            Text(characteristic.uuid.uuidString)
-            Text(characteristic.value?.hexEncodedString() ?? "")
-            if (characteristic.characteristic.properties.contains(.read)) {
-                Spacer()
-                Button("Refresh") {
-                    characteristic.characteristic.service.peripheral.readValue(for: characteristic.characteristic)
-                }
-            }
-        }.font(.caption)
+        CharacteristicView(characteristic: characteristic) {
+            "\(characteristic.uuid.uuidString)  \(characteristic.value?.hexEncodedString() ?? "")"
+        }
     }
 }
 
