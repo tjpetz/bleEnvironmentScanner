@@ -49,8 +49,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         if let p = findPeripheral(peripheral: peripheral) {
             p.rssi = RSSI.intValue
             print("Updating RSSI")
+            p.advertisementData = advertisementData
+            if let localNameValue = advertisementData[CBAdvertisementDataLocalNameKey] {
+                p.localName = localNameValue as? String
+            }
         } else {
-            peripherals.append(Peripheral(peripheral, scanRSSI: RSSI.intValue))
+            peripherals.append(Peripheral(peripheral, scanRSSI: RSSI.intValue, advertisementData: advertisementData))
             centralManager.connect(peripheral)
         }
     }
@@ -67,7 +71,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     func scan() {
         isScanning = true
         centralManager.scanForPeripherals(
-            withServices: [EnvironmentServiceView.serviceUUID],
+            withServices: nil, // [EnvironmentServiceView.serviceUUID],
             options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         // stop scanning after 30 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 30) {

@@ -16,8 +16,10 @@ struct CharacteristicView: View {
         HStack {
             Text(render())
             Spacer()
-            Button("Refresh") {
-                characteristic.characteristic.service.peripheral.readValue(for: characteristic.characteristic)
+            if (characteristic.characteristic.properties.contains(.read)) {
+                Button("Refresh") {
+                    characteristic.characteristic.service.peripheral.readValue(for: characteristic.characteristic)
+                }
             }
         }.font(.caption)
     }

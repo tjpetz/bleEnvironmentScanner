@@ -70,6 +70,10 @@ func getServiceView(service: Service) -> some View {
         return AnyView(BatteryServiceView(service: service))
     case BLEConfigurationView.serviceUUID:
         return AnyView(BLEConfigurationView(service: service))
+    case IoTConfigurationView.serviceUUID:
+        return AnyView(IoTConfigurationView(service: service))
+    case DeviceInformationView.serviceUUID:
+        return AnyView(DeviceInformationView(service: service))
     default:
         return AnyView(GenericServiceView(service: service))
     }

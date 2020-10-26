@@ -11,9 +11,11 @@ import CoreBluetooth
 class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate {
     
     let rawPeripheral: CBPeripheral
+    var advertisementData: [String : Any]?
     @Published var uuid: CBUUID
     @Published var localName: String?
     @Published var rssi: Int
+    @Published var txPower: Int?
 
     @Published var services: [Service] = []
     
@@ -81,9 +83,16 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         rssi = -90
     }
     
-    init(_ peripheral: CBPeripheral, scanRSSI rssi: Int) {
+    init(_ peripheral: CBPeripheral, scanRSSI rssi: Int, advertisementData: [String : Any]) {
         rawPeripheral = peripheral
         uuid = CBUUID(nsuuid: peripheral.identifier)
         self.rssi = rssi
+        self.advertisementData = advertisementData
+        if let localName = advertisementData[CBAdvertisementDataLocalNameKey] {
+            self.localName = localName as? String
+        }
+        if let txPower = advertisementData[CBAdvertisementDataTxPowerLevelKey] {
+            self.txPower = txPower as? Int
+        }
     }
 }
