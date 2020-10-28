@@ -48,10 +48,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         print("Found \(peripheral.identifier.uuidString) with rssi = \(RSSI.intValue)")
         if let p = findPeripheral(peripheral: peripheral) {
             p.rssi = RSSI.intValue
-            print("Updating RSSI")
             p.advertisementData = advertisementData
             if let localNameValue = advertisementData[CBAdvertisementDataLocalNameKey] {
                 p.localName = localNameValue as? String
+            }
+            if peripheral.state == .disconnected {
+                centralManager.connect(peripheral)
             }
         } else {
             peripherals.append(Peripheral(peripheral, scanRSSI: RSSI.intValue, advertisementData: advertisementData))
@@ -63,7 +65,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         print("Connected to \(peripheral.identifier.uuidString) with local name \(peripheral.name ?? "Unknown")")
         if let p = findPeripheral(peripheral: peripheral) {
             p.uuid = CBUUID(nsuuid: peripheral.identifier)
-            p.localName = peripheral.name
+            if let localName = peripheral.name {
+                p.localName = localName
+            }
             p.discoverServices()
         }
     }

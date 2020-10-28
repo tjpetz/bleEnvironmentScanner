@@ -33,7 +33,6 @@
 		0F21724125408AFF0033E537 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0F2172822540C6CE0033E537 /* PeripheralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralCell.swift; sourceTree = "<group>"; };
 		0F2172AF254111920033E537 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0F2172B32541F4C20033E537 /* BatteryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryService.swift; sourceTree = "<group>"; };
 		0F2172B62541F6400033E537 /* BatteryServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryServiceView.swift; sourceTree = "<group>"; };
 		0F2172BA254206720033E537 /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
 		0F2172BD254232150033E537 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -49,7 +48,6 @@
 		0FF356162538CD63000F5B81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0FF356182538CD63000F5B81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FF356192538CD63000F5B81 /* bleEnvironmentScanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bleEnvironmentScanner.entitlements; sourceTree = "<group>"; };
-		0FF356202538CD7C000F5B81 /* EnvironmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentService.swift; sourceTree = "<group>"; };
 		0FF356232538CDC4000F5B81 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 		0FF356262538D26C000F5B81 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		0FF3562F2538FD39000F5B81 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
@@ -77,8 +75,6 @@
 				0FF356262538D26C000F5B81 /* Peripheral.swift */,
 				0F2172BD254232150033E537 /* Service.swift */,
 				0F2172BA254206720033E537 /* Characteristic.swift */,
-				0FF356202538CD7C000F5B81 /* EnvironmentService.swift */,
-				0F2172B32541F4C20033E537 /* BatteryService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -168,7 +164,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					0FF356082538CD61000F5B81 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -366,6 +362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bleEnvironmentScanner/bleEnvironmentScanner.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"bleEnvironmentScanner/Preview Content\"";
@@ -390,6 +387,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bleEnvironmentScanner/bleEnvironmentScanner.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"bleEnvironmentScanner/Preview Content\"";

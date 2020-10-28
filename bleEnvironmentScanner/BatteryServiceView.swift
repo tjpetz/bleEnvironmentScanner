@@ -22,7 +22,11 @@ struct BatteryServiceView: View {
             Spacer()
             if let level = service.getCharacteristic(cbuuid: BatteryServiceView.batteryCharacteristicCBUUID) {
                 CharacteristicView(characteristic: level) {
-                    String(format: "Battery: %d %%", Int((level.value?.getUInt8())!))
+                    if level.value != nil {
+                        return String(format: "Battery: %d %%", Int((level.value!.getUInt8())))
+                    } else {
+                        return ""
+                    }
                 }
             }
         }

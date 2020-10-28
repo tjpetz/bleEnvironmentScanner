@@ -25,8 +25,10 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         
         for service in peripheral.services! {
             print("Found service \(service.uuid)")
-            services.append(Service(peripheral: self, service: service))
-            peripheral.discoverCharacteristics(nil, for: service)
+            if findService(service: service) == nil {       // only add if we've don't already have this service
+                services.append(Service(peripheral: self, service: service))
+                peripheral.discoverCharacteristics(nil, for: service)
+            }
         }
     }
     

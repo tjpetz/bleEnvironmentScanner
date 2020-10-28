@@ -50,8 +50,51 @@ struct DetailsView: View {
     
     @Binding var peripheral: Peripheral?
     
+    func deviceName() -> String {
+        if let name = peripheral?.localName {
+            if name != "" {
+                return name
+            } else {
+                return peripheral!.uuid.uuidString
+            }
+        } else {
+            return peripheral!.uuid.uuidString
+        }
+    }
+    
     var body: some View {
         List {
+            if peripheral != nil {
+                VStack (alignment: .leading, spacing: 4) {
+                    Text(deviceName()).font(.headline).foregroundColor(.blue)
+                     HStack {
+                        if let txPower = peripheral?.txPower {
+                            Text(String(format: "TX Power %d dBm", txPower))
+                        }
+                        Spacer()
+                        if let rssi = peripheral?.rssi {
+                            Text(String(format: "RSSI %d dBm", rssi))
+                        }
+                    }.font(.caption)
+                    HStack {
+                        if let state = peripheral?.rawPeripheral.state {
+                            if state == .connected {
+                                Text("Connected")
+                                Spacer()
+                                Button("Disconnect") {
+                                }
+                            } else {
+                                Text("Not Connected")
+                                Spacer()
+                                Button("Connect") {
+                                    
+                                }
+                            }
+                        }
+                    }
+                    Divider()
+                }.padding(4)
+            }
             if let services = peripheral?.services {
                 ForEach (services) {
                     service in

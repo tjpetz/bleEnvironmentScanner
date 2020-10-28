@@ -12,9 +12,9 @@ struct PeripheralCell: View {
     
     var body: some View {
         HStack {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 2) {
                 Text(peripheral.uuid.uuidString)
-                Text(peripheral.localName ?? "").font(.footnote).foregroundColor(.secondary)
+                Text(peripheral.localName ?? "").font(.caption).foregroundColor(.secondary)
             }
             Spacer()
             SignalStrengthView(signalStrength: peripheral.rssi)
