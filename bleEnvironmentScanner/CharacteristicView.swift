@@ -10,13 +10,15 @@ import SwiftUI
 struct CharacteristicView: View {
     
     @ObservedObject var characteristic: Characteristic
+    @EnvironmentObject var peripheral: Peripheral
+    
     var render: () -> String
     
     var body: some View {
         HStack {
             Text(render())
             Spacer()
-            if (characteristic.characteristic.properties.contains(.read) && characteristic.service.peripheral.isConnectable) {
+            if (characteristic.characteristic.properties.contains(.read) && peripheral.isConnected) {
                 Button("Refresh") {
                     characteristic.characteristic.service.peripheral.readValue(for: characteristic.characteristic)
                 }
@@ -24,10 +26,3 @@ struct CharacteristicView: View {
         }.font(.caption)
     }
 }
-
-
-//struct CharacteristicView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CharacteristicView()
-//    }
-//}

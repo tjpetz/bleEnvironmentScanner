@@ -40,8 +40,8 @@ struct EnvironmentServiceView: View {
             }
             if let location = service.getCharacteristic(cbuuid: EnvironmentServiceView.locationNameCharacteristicCBUUID) {
                 CharacteristicView(characteristic: location) {
-                    if location.value != nil {
-                        return "Location: \(String(describing: String(data: location.value!, encoding: String.Encoding.utf8)))"
+                    if let loc = location.value {
+                        return "Location: \(String(data: loc, encoding: String.Encoding.utf8)!)"
                     } else {
                         return "Location:"
                     }

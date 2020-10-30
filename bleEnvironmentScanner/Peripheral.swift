@@ -12,11 +12,13 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
     
     let rawPeripheral: CBPeripheral
     var advertisementData: [String : Any]?
+    var bleManager: BLEManager
     
     @Published var uuid: CBUUID
     @Published var localName: String?
     @Published var rssi: Int
     @Published var txPower: Int?
+    @Published var isConnected: Bool
     @Published var isConnectable: Bool
     
     @Published var services: [Service] = []
@@ -115,16 +117,26 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         printCurrentState()
     }
     
+    func connect() {
+        bleManager.centralManager.connect(rawPeripheral)
+    }
+    
+    func disconnect() {
+        bleManager.centralManager.cancelPeripheralConnection(rawPeripheral)
+    }
+    
     // MARK: Constructors
-    init(_ peripheral: CBPeripheral) {
+    init(_ peripheral: CBPeripheral, bleManager: BLEManager) {
         rawPeripheral = peripheral
         uuid = CBUUID(nsuuid: peripheral.identifier)
         rssi = -90
         isConnectable = false
+        self.bleManager = bleManager
+        self.isConnected = false
         super.init()
     }
     
-    init(_ peripheral: CBPeripheral, scanRSSI rssi: Int, advertisementData: [String : Any]) {
+    init(_ peripheral: CBPeripheral, scanRSSI rssi: Int, advertisementData: [String : Any], bleManager: BLEManager) {
         rawPeripheral = peripheral
         uuid = CBUUID(nsuuid: peripheral.identifier)
         self.rssi = rssi
@@ -140,6 +152,8 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         } else {
             self.isConnectable = false
         }
+        self.bleManager = bleManager
+        self.isConnected = false
         super.init()
         print("Peripheral initialization")
         printCurrentState()

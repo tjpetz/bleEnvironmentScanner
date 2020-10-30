@@ -22,6 +22,8 @@ struct IoTConfigurationView: View {
 
     
     @ObservedObject var service: Service
+
+    // TODO: Fixup the forced unwrapping of the data, the values may not be available!
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {

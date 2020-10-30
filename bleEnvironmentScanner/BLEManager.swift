@@ -52,7 +52,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
                 centralManager.connect(peripheral)
             }
         } else {
-            peripherals.append(Peripheral(peripheral, scanRSSI: RSSI.intValue, advertisementData: advertisementData))
+            peripherals.append(Peripheral(peripheral, scanRSSI: RSSI.intValue, advertisementData: advertisementData, bleManager: self))
             if let isConnectable = advertisementData[CBAdvertisementDataIsConnectable] {
                 if isConnectable as! Bool {
                     if peripheral.state == .disconnected {
@@ -67,6 +67,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         print("Connected to \(peripheral.identifier.uuidString) with local name \(peripheral.name ?? "Unknown")")
         if let p = findPeripheral(peripheral: peripheral) {
             p.uuid = CBUUID(nsuuid: peripheral.identifier)
+            p.isConnected = true
             if let localName = peripheral.name {
                 p.localName = localName
             }
@@ -76,6 +77,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("Failed to connect to \(peripheral.identifier.uuidString) because \(error!.localizedDescription)")
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("Disconnecting from \(peripheral.identifier.uuidString)")
+        if let p = findPeripheral(peripheral: peripheral) {
+            p.isConnected = false
+        }
     }
     
     func scan() {

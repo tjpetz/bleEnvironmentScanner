@@ -16,6 +16,8 @@ struct DeviceInformationView: View {
     static let serialNumberString = CBUUID(string: "2A25")
     
     @ObservedObject var service: Service
+
+    // TODO: Fixup the forced unwrapping of the characteristics as the values may not yet be available.
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
