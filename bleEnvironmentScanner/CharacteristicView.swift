@@ -16,7 +16,7 @@ struct CharacteristicView: View {
         HStack {
             Text(render())
             Spacer()
-            if (characteristic.characteristic.properties.contains(.read)) {
+            if (characteristic.characteristic.properties.contains(.read) && characteristic.service.peripheral.isConnectable) {
                 Button("Refresh") {
                     characteristic.characteristic.service.peripheral.readValue(for: characteristic.characteristic)
                 }

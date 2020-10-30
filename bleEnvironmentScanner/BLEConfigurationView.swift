@@ -36,17 +36,17 @@ struct BLEConfigurationView: View {
             }
             if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.humidityGreenLimitCharacteristicUUID) {
                 CharacteristicView(characteristic: characteristic) {
-                    String(format: "Humidity Green Limit: %d", Int((characteristic.value?.getInt16())!))
+                    String(format: "Humidity Green Limit: %d", Int((characteristic.value?.getInt16()) ?? -99))
                 }
             }
             if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.humidityAmberLimitCharacteristicUUID) {
                 CharacteristicView(characteristic: characteristic) {
-                    String(format: "Humidity Amber Limit: %d", Int((characteristic.value?.getInt16())!))
+                    String(format: "Humidity Amber Limit: %d", Int((characteristic.value?.getInt16()) ?? -99))
                 }
             }
             if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.configIsLockedCharacteristicUUID) {
                 CharacteristicView(characteristic: characteristic) {
-                    String(format: "Configuration is Locked: %d", Int((characteristic.value?.getUInt8())!))
+                    String(format: "Configuration is Locked: %d", Int((characteristic.value?.getUInt8()) ?? 0))
                 }
             }
             if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.lockPasswordCharacteristicUUID) {

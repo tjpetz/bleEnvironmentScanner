@@ -25,22 +25,26 @@ struct EnvironmentServiceView: View {
             Spacer()
             if let temp = service.getCharacteristic(cbuuid: EnvironmentServiceView.temperatureCharacteristicCBUUID) {
                 CharacteristicView(characteristic: temp) {
-                    String(format: "Temperature: %0.2f C", Float((temp.value?.getInt16())!) / 100.0)
+                    String(format: "Temperature: %0.2f C", Float((temp.value?.getInt16()) ?? -4000) / 100.0)
                 }
             }
             if let humidity = service.getCharacteristic(cbuuid: EnvironmentServiceView.humidityCharacteristicCBUUID) {
                 CharacteristicView(characteristic: humidity) {
-                    String(format: "Humidity: %0.2f RH %%", Float((humidity.value?.getInt16())!) / 100.0)
+                    String(format: "Humidity: %0.2f RH %%", Float((humidity.value?.getInt16()) ?? 0) / 100.0)
                 }
             }
             if let pressure = service.getCharacteristic(cbuuid: EnvironmentServiceView.pressureCharacteristicCBUUID) {
                 CharacteristicView(characteristic: pressure) {
-                    String(format: "Pressure: %0.2f kPa", Float((pressure.value?.getInt32())!) / 10000.0)
+                    String(format: "Pressure: %0.2f kPa", Float((pressure.value?.getInt32()) ?? 0) / 10000.0)
                 }
             }
             if let location = service.getCharacteristic(cbuuid: EnvironmentServiceView.locationNameCharacteristicCBUUID) {
                 CharacteristicView(characteristic: location) {
-                    "Location: \(String(data: location.value!, encoding: String.Encoding.utf8) ?? "")"
+                    if location.value != nil {
+                        return "Location: \(String(describing: String(data: location.value!, encoding: String.Encoding.utf8)))"
+                    } else {
+                        return "Location:"
+                    }
                 }
             }
         }

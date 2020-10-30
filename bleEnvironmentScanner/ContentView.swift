@@ -77,19 +77,24 @@ struct DetailsView: View {
                         }
                     }.font(.caption)
                     HStack {
-                        if let state = peripheral?.rawPeripheral.state {
-                            if state == .connected {
-                                Text("Connected")
-                                Spacer()
-                                Button("Disconnect") {
-                                }
-                            } else {
-                                Text("Not Connected")
-                                Spacer()
-                                Button("Connect") {
-                                    
+                        if peripheral!.isConnectable {
+                            if let state = peripheral?.rawPeripheral.state {
+                                if state == .connected {
+                                    Text("Connected")
+                                    Spacer()
+                                    Button("Disconnect") {
+                                    }
+                                } else {
+                                    Text("Not Connected")
+                                    Spacer()
+                                    Button("Connect") {
+                                        
+                                    }
                                 }
                             }
+                        } else {
+                            Text("Peripheral is not connectable")
+                            Spacer()
                         }
                     }
                     Divider()

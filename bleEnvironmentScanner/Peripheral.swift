@@ -12,16 +12,30 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
     
     let rawPeripheral: CBPeripheral
     var advertisementData: [String : Any]?
+    
     @Published var uuid: CBUUID
     @Published var localName: String?
     @Published var rssi: Int
     @Published var txPower: Int?
-
+    @Published var isConnectable: Bool
+    
     @Published var services: [Service] = []
+    
+    func printCurrentState() {
+        print("Peripheral.uuid = \(uuid)")
+        print("Peripheral.localName = \(localName ?? "Not Available")")
+        print("Peripheral.rssi = \(rssi)")
+        print("Peripheral.txPower = \(txPower ?? -255)")
+        print("Peripheral.isConnectable = \(isConnectable)")
+        print("Peripheral.services count = \(services.count)")
+    }
     
     // MARK: - Service Discovery
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         print("Discovered \(peripheral.services!.count) service(s) for \(peripheral.identifier.uuidString)")
+        if let err = error {
+            print("Error in discovery: \(err.localizedDescription)")
+        }
         
         for service in peripheral.services! {
             print("Found service \(service.uuid)")
@@ -78,11 +92,36 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         }
     }
 
+    func updateWithScanResults(scanRSSI rssi: Int, advertisementData: [String : Any])
+    {
+        self.rssi = rssi
+        self.advertisementData = advertisementData
+        if let localName = advertisementData[CBAdvertisementDataLocalNameKey] {
+            self.localName = localName as? String
+        }
+        if let txPower = advertisementData[CBAdvertisementDataTxPowerLevelKey] {
+            self.txPower = txPower as? Int
+        }
+        if let isConnectable = advertisementData[CBAdvertisementDataIsConnectable] {
+            // Force to true if we receive a connectable.  Not every advertising packet will be connectable.
+            // So the only time this should be false is if the peripheral is never connectable.
+            if isConnectable as! Bool == true {
+                self.isConnectable = true
+            }
+        } else {
+            self.isConnectable = false
+        }
+        print("Scan updated settings")
+        printCurrentState()
+    }
+    
     // MARK: Constructors
     init(_ peripheral: CBPeripheral) {
         rawPeripheral = peripheral
         uuid = CBUUID(nsuuid: peripheral.identifier)
         rssi = -90
+        isConnectable = false
+        super.init()
     }
     
     init(_ peripheral: CBPeripheral, scanRSSI rssi: Int, advertisementData: [String : Any]) {
@@ -96,5 +135,13 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         if let txPower = advertisementData[CBAdvertisementDataTxPowerLevelKey] {
             self.txPower = txPower as? Int
         }
+        if let isConnectable = advertisementData[CBAdvertisementDataIsConnectable] {
+            self.isConnectable = isConnectable as! Bool
+        } else {
+            self.isConnectable = false
+        }
+        super.init()
+        print("Peripheral initialization")
+        printCurrentState()
     }
 }

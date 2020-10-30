@@ -47,17 +47,19 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print("Found \(peripheral.identifier.uuidString) with rssi = \(RSSI.intValue)")
         if let p = findPeripheral(peripheral: peripheral) {
-            p.rssi = RSSI.intValue
-            p.advertisementData = advertisementData
-            if let localNameValue = advertisementData[CBAdvertisementDataLocalNameKey] {
-                p.localName = localNameValue as? String
-            }
-            if peripheral.state == .disconnected {
+            p.updateWithScanResults(scanRSSI: RSSI.intValue, advertisementData: advertisementData)
+            if p.isConnectable && peripheral.state == .disconnected {
                 centralManager.connect(peripheral)
             }
         } else {
             peripherals.append(Peripheral(peripheral, scanRSSI: RSSI.intValue, advertisementData: advertisementData))
-            centralManager.connect(peripheral)
+            if let isConnectable = advertisementData[CBAdvertisementDataIsConnectable] {
+                if isConnectable as! Bool {
+                    if peripheral.state == .disconnected {
+                        centralManager.connect(peripheral)
+                    }
+                }
+            }
         }
     }
     
@@ -72,10 +74,14 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         }
     }
     
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("Failed to connect to \(peripheral.identifier.uuidString) because \(error!.localizedDescription)")
+    }
+    
     func scan() {
         isScanning = true
         centralManager.scanForPeripherals(
-            withServices: nil, // [EnvironmentServiceView.serviceUUID],
+            withServices: [EnvironmentServiceView.serviceUUID],
             options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         // stop scanning after 30 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
