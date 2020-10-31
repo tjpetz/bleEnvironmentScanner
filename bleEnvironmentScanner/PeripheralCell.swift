@@ -21,9 +21,3 @@ struct PeripheralCell: View {
         }.padding(4)
     }
 }
-
-//struct PeripheralCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PeripheralCell(Peripheral()
-//    }
-//}

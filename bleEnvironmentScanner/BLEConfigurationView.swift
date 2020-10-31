@@ -26,12 +26,12 @@ struct BLEConfigurationView: View {
             Spacer()
             if let sensorName = service.getCharacteristic(cbuuid: BLEConfigurationView.sensorNameCharacteristicUUID) {
                 CharacteristicView(characteristic: sensorName) {
-                    "Sensor Name: \(String(data: sensorName.value!, encoding: String.Encoding.utf8) ?? "")"
+                    "Sensor Name: \(decodeString(sensorName.value))"
                 }
             }
             if let sensorLocation = service.getCharacteristic(cbuuid: BLEConfigurationView.sensorLocationCharacteristicUUID) {
                 CharacteristicView(characteristic: sensorLocation) {
-                    "Sensor Location: \(String(data: sensorLocation.value!, encoding: String.Encoding.utf8) ?? "")"
+                    "Sensor Location: \(decodeString(sensorLocation.value))"
                 }
             }
             if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.humidityGreenLimitCharacteristicUUID) {

@@ -10,13 +10,13 @@ import CoreBluetooth
 
 struct GenericServiceView: View {
     
-    @State var service: Service?
+    @ObservedObject var service: Service
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
-            Text(service!.uuid.uuidString).font(.headline)
+            Text(service.uuid.uuidString).font(.headline)
             Spacer()
-            ForEach (service!.characteristics, id: \.self) {
+            ForEach (service.characteristics, id: \.self) {
                 characteristic in
                 CharacteristicCell(characteristic: characteristic)
             }
@@ -35,9 +35,3 @@ struct CharacteristicCell: View {
         }
     }
 }
-
-//struct GenericServiceView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GenericServiceView(service: nil)
-//    }
-//}

@@ -20,7 +20,7 @@ struct CharacteristicView: View {
             Spacer()
             if (characteristic.characteristic.properties.contains(.read) && peripheral.isConnected) {
                 Button("Refresh") {
-                    characteristic.characteristic.service.peripheral.readValue(for: characteristic.characteristic)
+                     peripheral.rawPeripheral.readValue(for: characteristic.characteristic)
                 }
             }
         }.font(.caption)

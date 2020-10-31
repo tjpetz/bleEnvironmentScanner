@@ -43,8 +43,8 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
             print("Found service \(service.uuid)")
             if findService(service: service) == nil {       // only add if we've don't already have this service
                 services.append(Service(peripheral: self, service: service))
-                peripheral.discoverCharacteristics(nil, for: service)
             }
+            peripheral.discoverCharacteristics(nil, for: service)
         }
     }
     
@@ -71,7 +71,10 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         if let s = findService(service: service) {
             for c in service.characteristics! {
                 print("Characteristic \(c.uuid)")
-                s.characteristics.append(Characteristic(service: s, characteristic: c))
+                if s.getCharacteristic(cbuuid: c.uuid) == nil {
+                    // We haven't seen this characteristic before so add it to our list
+                    s.characteristics.append(Characteristic(service: s, characteristic: c))
+                }
                 if c.properties.contains(.read) {
                     peripheral.readValue(for: c)
                 }
@@ -86,7 +89,7 @@ class Peripheral: NSObject, ObservableObject, Identifiable, CBPeripheralDelegate
         
         for s in services {
             for c in s.characteristics {
-                if c.characteristic == characteristic {
+                if c.characteristic.uuid == characteristic.uuid {
                     c.value = characteristic.value
                     return
                 }

@@ -39,6 +39,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
             scan()
         case .poweredOff:
             stopScanning()
+            for p in peripherals {
+                if p.isConnected {
+                    p.disconnect()
+                }
+            }
         default:
             print("Central not in expected state")
         }
@@ -66,6 +71,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Connected to \(peripheral.identifier.uuidString) with local name \(peripheral.name ?? "Unknown")")
         if let p = findPeripheral(peripheral: peripheral) {
+            p.rawPeripheral.delegate = p
             p.uuid = CBUUID(nsuuid: peripheral.identifier)
             p.isConnected = true
             if let localName = peripheral.name {
@@ -89,7 +95,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     func scan() {
         isScanning = true
         centralManager.scanForPeripherals(
-            withServices: [EnvironmentServiceView.serviceUUID],
+            withServices: nil, // [EnvironmentServiceView.serviceUUID],
             options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         // stop scanning after 30 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 30) {

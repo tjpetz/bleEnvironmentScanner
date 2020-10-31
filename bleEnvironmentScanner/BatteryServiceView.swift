@@ -14,7 +14,7 @@ struct BatteryServiceView: View {
     static let serviceUUID = CBUUID(string: "180F")
     static let batteryCharacteristicCBUUID = CBUUID(string: "2A19")
     
-    @State var service: Service
+    @ObservedObject var service: Service
     
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
@@ -34,8 +34,4 @@ struct BatteryServiceView: View {
     }
 }
 
-//struct BatteryServiceView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BatteryServiceView()
-//    }
-//}
+

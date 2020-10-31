@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ThermometerView: View {
     
-    var range: Range<Int>
-    var temp: Float
+//    var range: Range<Int>
+//    var temp: Float
     
     var body: some View {
         Rectangle()
@@ -20,6 +20,6 @@ struct ThermometerView: View {
 
 struct ThermometerView_Previews: PreviewProvider {
     static var previews: some View {
-        ThermometerView(range: -20..<40, temp: 18.0)
+        ThermometerView() // range: -20..<40, temp: 18.0)
     }
 }

@@ -71,12 +71,8 @@ struct PeripheralInfoView: View {
     @ObservedObject var peripheral: Peripheral
 
     func deviceName() -> String {
-        if let name = peripheral.localName {
-            if name != "" {
-                return name
-            } else {
-                return peripheral.uuid.uuidString
-            }
+        if let name = peripheral.localName, name != "" {
+            return name
         } else {
             return peripheral.uuid.uuidString
         }
@@ -85,16 +81,18 @@ struct PeripheralInfoView: View {
 
     var body: some View {
         VStack (alignment: .leading, spacing: 4) {
-            Text(deviceName()).font(.headline).foregroundColor(.blue)
-             HStack {
-                if let txPower = peripheral.txPower {
-                    Text(String(format: "TX Power %d dBm", txPower))
+            HStack {
+                VStack (alignment: .leading) {
+                    Text(deviceName()).font(.headline).foregroundColor(.blue)
+                    if let txPower = peripheral.txPower {
+                        Text(String(format: "TX Power %d dBm", txPower)).font(.caption).foregroundColor(.secondary)
+                    }
                 }
                 Spacer()
                 if let rssi = peripheral.rssi {
-                    Text(String(format: "RSSI %d dBm", rssi))
+                    SignalStrengthView(signalStrength: rssi)
                 }
-            }.font(.caption)
+            }
             HStack {
                 if peripheral.isConnectable {
                     if peripheral.isConnected {

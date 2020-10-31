@@ -34,4 +34,13 @@ extension Data {
         let val = [UInt8](self)
         return Int32(val[3]) << 24 + Int32(val[2]) << 16 + Int32(val[1]) << 8 + Int32(val[0])
     }
+
+}
+
+func decodeString(_ data: Data?, defaultValue: String = "") -> String {
+    if let val = data {
+        return String(data: val, encoding: String.Encoding.utf8) ?? defaultValue
+    } else {
+        return defaultValue
+    }
 }
