@@ -23,19 +23,20 @@ struct EnvironmentServiceView: View {
         VStack (alignment: .leading, spacing: 4) {
             Text("Environment Service").font(.headline)
             Spacer()
-            if let temp = service.getCharacteristic(cbuuid: EnvironmentServiceView.temperatureCharacteristicCBUUID) {
-                CharacteristicView(characteristic: temp) {
-                    String(format: "Temperature: %0.2f C", Float((temp.value?.getInt16()) ?? -4000) / 100.0)
-                }
+            if let temp = service.getCharacteristic(cbuuid: EnvironmentServiceView.temperatureCharacteristicCBUUID), let val = temp.value {
+//                    Gauge(value: Float(val.getInt16()) / 100.0, minRange : -20, maxRange: 100)
+                    CharacteristicView(characteristic: temp) {
+                        String(format: "Temperature: %0.2f C", Float(val.getInt16()) / 100.0)
+                    }
             }
-            if let humidity = service.getCharacteristic(cbuuid: EnvironmentServiceView.humidityCharacteristicCBUUID) {
+            if let humidity = service.getCharacteristic(cbuuid: EnvironmentServiceView.humidityCharacteristicCBUUID), let val = humidity.value {
                 CharacteristicView(characteristic: humidity) {
-                    String(format: "Humidity: %0.2f RH %%", Float((humidity.value?.getInt16()) ?? 0) / 100.0)
+                    String(format: "Humidity: %0.2f RH %%", Float(val.getInt16()) / 100.0)
                 }
             }
-            if let pressure = service.getCharacteristic(cbuuid: EnvironmentServiceView.pressureCharacteristicCBUUID) {
+            if let pressure = service.getCharacteristic(cbuuid: EnvironmentServiceView.pressureCharacteristicCBUUID), let val = pressure.value {
                 CharacteristicView(characteristic: pressure) {
-                    String(format: "Pressure: %0.2f kPa", Float((pressure.value?.getInt32()) ?? 0) / 10000.0)
+                    String(format: "Pressure: %0.2f kPa", Float(val.getInt32()) / 10000.0)
                 }
             }
             if let location = service.getCharacteristic(cbuuid: EnvironmentServiceView.locationNameCharacteristicCBUUID) {

@@ -24,29 +24,29 @@ struct BLEConfigurationView: View {
         VStack (alignment: .leading, spacing: 4) {
             Text("BLE Sensor Configuration Service").font(.headline)
             Spacer()
-            if let sensorName = service.getCharacteristic(cbuuid: BLEConfigurationView.sensorNameCharacteristicUUID) {
-                CharacteristicView(characteristic: sensorName) {
-                    "Sensor Name: \(decodeString(sensorName.value))"
+            if let sensorNameCharacteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.sensorNameCharacteristicUUID), let sensorName = sensorNameCharacteristic.value {
+                CharacteristicView(characteristic: sensorNameCharacteristic) {
+                    "Sensor Name: \(decodeString(sensorName))"
                 }
             }
-            if let sensorLocation = service.getCharacteristic(cbuuid: BLEConfigurationView.sensorLocationCharacteristicUUID) {
-                CharacteristicView(characteristic: sensorLocation) {
-                    "Sensor Location: \(decodeString(sensorLocation.value))"
+            if let sensorLocationCharacteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.sensorLocationCharacteristicUUID), let sensorLocation = sensorLocationCharacteristic.value {
+                CharacteristicView(characteristic: sensorLocationCharacteristic) {
+                    "Sensor Location: \(decodeString(sensorLocation))"
                 }
             }
-            if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.humidityGreenLimitCharacteristicUUID) {
+            if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.humidityGreenLimitCharacteristicUUID), let value = characteristic.value {
                 CharacteristicView(characteristic: characteristic) {
-                    String(format: "Humidity Green Limit: %d", Int((characteristic.value?.getInt16()) ?? -99))
+                    String(format: "Humidity Green Limit: %d", Int(value.getInt16()))
                 }
             }
-            if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.humidityAmberLimitCharacteristicUUID) {
+            if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.humidityAmberLimitCharacteristicUUID), let value = characteristic.value {
                 CharacteristicView(characteristic: characteristic) {
-                    String(format: "Humidity Amber Limit: %d", Int((characteristic.value?.getInt16()) ?? -99))
+                    String(format: "Humidity Amber Limit: %d", Int(value.getInt16()))
                 }
             }
-            if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.configIsLockedCharacteristicUUID) {
+            if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.configIsLockedCharacteristicUUID), let value = characteristic.value {
                 CharacteristicView(characteristic: characteristic) {
-                    String(format: "Configuration is Locked: %d", Int((characteristic.value?.getUInt8()) ?? 0))
+                    String(format: "Configuration is Locked: %d", Int(value.getUInt8()))
                 }
             }
             if let characteristic = service.getCharacteristic(cbuuid: BLEConfigurationView.lockPasswordCharacteristicUUID) {

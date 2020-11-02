@@ -14,7 +14,7 @@
 		0F2172BB254206720033E537 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172BA254206720033E537 /* Characteristic.swift */; };
 		0F2172BE254232150033E537 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2172BD254232150033E537 /* Service.swift */; };
 		0FB7243E254482C900744EF7 /* CharacteristicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7243D254482C900744EF7 /* CharacteristicView.swift */; };
-		0FB724412544E90400744EF7 /* ThermometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB724402544E90400744EF7 /* ThermometerView.swift */; };
+		0FB724412544E90400744EF7 /* Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB724402544E90400744EF7 /* Gauge.swift */; };
 		0FB724442544ED0E00744EF7 /* BLEConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB724432544ED0E00744EF7 /* BLEConfigurationView.swift */; };
 		0FB7244825459EEE00744EF7 /* IoTConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7244725459EEE00744EF7 /* IoTConfigurationView.swift */; };
 		0FB7244B2547393400744EF7 /* DeviceInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7244A2547393400744EF7 /* DeviceInformationView.swift */; };
@@ -37,7 +37,7 @@
 		0F2172BA254206720033E537 /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
 		0F2172BD254232150033E537 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		0FB7243D254482C900744EF7 /* CharacteristicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicView.swift; sourceTree = "<group>"; };
-		0FB724402544E90400744EF7 /* ThermometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerView.swift; sourceTree = "<group>"; };
+		0FB724402544E90400744EF7 /* Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gauge.swift; sourceTree = "<group>"; };
 		0FB724432544ED0E00744EF7 /* BLEConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEConfigurationView.swift; sourceTree = "<group>"; };
 		0FB7244725459EEE00744EF7 /* IoTConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoTConfigurationView.swift; sourceTree = "<group>"; };
 		0FB7244A2547393400744EF7 /* DeviceInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationView.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 				0FF3563325391950000F5B81 /* EnvironmentServiceView.swift */,
 				0F2172B62541F6400033E537 /* BatteryServiceView.swift */,
 				0FB7243D254482C900744EF7 /* CharacteristicView.swift */,
-				0FB724402544E90400744EF7 /* ThermometerView.swift */,
+				0FB724402544E90400744EF7 /* Gauge.swift */,
 				0FB724432544ED0E00744EF7 /* BLEConfigurationView.swift */,
 				0FB7244725459EEE00744EF7 /* IoTConfigurationView.swift */,
 				0FB7244A2547393400744EF7 /* DeviceInformationView.swift */,
@@ -208,7 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F010F702543615A0098D436 /* EnvironmentServiceView.swift in Sources */,
-				0FB724412544E90400744EF7 /* ThermometerView.swift in Sources */,
+				0FB724412544E90400744EF7 /* Gauge.swift in Sources */,
 				0FF356272538D26C000F5B81 /* Peripheral.swift in Sources */,
 				0F2172BE254232150033E537 /* Service.swift in Sources */,
 				0FB7244B2547393400744EF7 /* DeviceInformationView.swift in Sources */,

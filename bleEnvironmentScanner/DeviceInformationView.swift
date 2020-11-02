@@ -22,19 +22,19 @@ struct DeviceInformationView: View {
         VStack (alignment: .leading, spacing: 4) {
             Text("Device Information").font(.headline)
             Spacer()
-            if let c = service.getCharacteristic(cbuuid: DeviceInformationView.manufacturerNameString) {
+            if let c = service.getCharacteristic(cbuuid: DeviceInformationView.manufacturerNameString), let v = c.value {
                 CharacteristicView(characteristic: c) {
-                    "Manufacturer Name: \(decodeString(c.value))"
+                    "Manufacturer Name: \(decodeString(v))"
                 }
             }
-            if let c = service.getCharacteristic(cbuuid: DeviceInformationView.modelNumberString) {
+            if let c = service.getCharacteristic(cbuuid: DeviceInformationView.modelNumberString), let v = c.value {
                 CharacteristicView(characteristic: c) {
-                    "Model Number: \(decodeString(c.value))"
+                    "Model Number: \(decodeString(v))"
                 }
             }
-            if let c = service.getCharacteristic(cbuuid: DeviceInformationView.serialNumberString) {
+            if let c = service.getCharacteristic(cbuuid: DeviceInformationView.serialNumberString), let v = c.value {
                 CharacteristicView(characteristic: c) {
-                    "Serial Number: \(decodeString(c.value))"
+                    "Serial Number: \(decodeString(v))"
                 }
             }
         }

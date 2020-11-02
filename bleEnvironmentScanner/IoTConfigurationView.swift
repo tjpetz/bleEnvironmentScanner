@@ -27,9 +27,9 @@ struct IoTConfigurationView: View {
         VStack (alignment: .leading, spacing: 4) {
             Text("IoT Sensor Configuration Service").font(.headline)
             Spacer()
-            if let ssid = service.getCharacteristic(cbuuid: IoTConfigurationView.ssidCharacteristicUUID) {
-                CharacteristicView(characteristic: ssid) {
-                    "ssid: \(decodeString(ssid.value))"
+            if let ssidCharacteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.ssidCharacteristicUUID), let ssid = ssidCharacteristic.value {
+                CharacteristicView(characteristic: ssidCharacteristic) {
+                    "ssid: \(decodeString(ssid))"
                 }
             }
             if let wifiPassword = service.getCharacteristic(cbuuid: IoTConfigurationView.wifiPasswordCharacteristicUUID) {
@@ -37,24 +37,24 @@ struct IoTConfigurationView: View {
                     "WiFi Password: "
                 }
             }
-            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.hostNameCharacteristicUUID) {
+            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.hostNameCharacteristicUUID), let value = characteristic.value {
                 CharacteristicView(characteristic: characteristic) {
-                    "Hostname: \(decodeString(characteristic.value))"
+                    "Hostname: \(decodeString(value))"
                 }
             }
-            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.mqttBrokerCharacteristicUUID) {
+            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.mqttBrokerCharacteristicUUID), let value = characteristic.value {
                 CharacteristicView(characteristic: characteristic) {
-                    "MQTT Broker: \(decodeString(characteristic.value))"
+                    "MQTT Broker: \(decodeString(value))"
                 }
             }
-            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.rootTopicCharacteristicUUID) {
+            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.rootTopicCharacteristicUUID), let value = characteristic.value {
                 CharacteristicView(characteristic: characteristic) {
-                    "MQTT Root Topic: \(decodeString(characteristic.value))"
+                    "MQTT Root Topic: \(decodeString(value))"
                 }
             }
-            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.configIsLockedCharacteristicUUID) {
+            if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.configIsLockedCharacteristicUUID), let value = characteristic.value {
                 CharacteristicView(characteristic: characteristic) {
-                    String(format: "Configuration is Locked: %d", Int((characteristic.value?.getUInt8()) ?? 0))
+                    String(format: "Configuration is Locked: %d", Int(value.getUInt8()))
                 }
             }
             if let characteristic = service.getCharacteristic(cbuuid: IoTConfigurationView.lockPasswordCharacteristicUUID) {
